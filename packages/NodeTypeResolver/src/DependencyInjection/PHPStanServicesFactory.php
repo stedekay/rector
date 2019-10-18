@@ -31,6 +31,11 @@ final class PHPStanServicesFactory
 
         $additionalConfigFiles[] = __DIR__ . '/../../config/phpstan/type-extensions.neon';
 
+        $currentProjectConfigFile = __DIR__ . '/../../../../phpstan.neon';
+        if (file_exists($currentProjectConfigFile)) {
+            $additionalConfigFiles[] = $currentProjectConfigFile;
+        }
+
         $this->container = $containerFactory->create(sys_get_temp_dir(), $additionalConfigFiles, []);
     }
 
